@@ -18,4 +18,3 @@ public class ProductsPage extends BasePage {
         return driver.findElement(title).getText();
     }
 }
-
