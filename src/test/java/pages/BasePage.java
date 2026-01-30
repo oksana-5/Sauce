@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public abstract class BasePage {
+    public static final String DATA_TEST_PATTERN = "[data-test='%s']";
     WebDriver driver;
     WebDriverWait wait;
     public final static String BASE_URL = "https://www.saucedemo.com/";
