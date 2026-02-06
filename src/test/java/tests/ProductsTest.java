@@ -7,6 +7,7 @@ import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import static user.UserFactory.withAdminPermission;
 
 public class ProductsTest extends BaseTest {
     List<String> goodsList = new ArrayList<>(
@@ -15,12 +16,13 @@ public class ProductsTest extends BaseTest {
 
     @Test
     public void checkGoodsAdded() {
+        System.out.println("ProductsTest.correct in thread: " + Thread.currentThread().getId());
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(withAdminPermission());
         assertTrue(productsPage.isTitleIsDisplayed());
         assertEquals(productsPage.checkTitleName(), ("Products"));
-        for (int i = 0; i < goodsList.size(); i++) {
-            productsPage.addGoodsToCart(goodsList.get(i));
+        for (String goods : goodsList) {
+            productsPage.addGoodsToCart(goods);
         }
 
         productsPage.addGoodsToCart(2);
