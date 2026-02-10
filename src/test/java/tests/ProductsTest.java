@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static enums.TitleNaming.PRODUCTS;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static user.UserFactory.withAdminPermission;
@@ -14,13 +15,13 @@ public class ProductsTest extends BaseTest {
             List.of("Sauce Labs Fleece Jacket", "Sauce Labs Backpack", "Sauce Labs Bike Light")
     );
 
-    @Test
+    @Test(description = "Тест проверяет добавление товаров в корзину")
     public void checkGoodsAdded() {
         System.out.println("ProductsTest.correct in thread: " + Thread.currentThread().getId());
         loginPage.open();
         loginPage.login(withAdminPermission());
         assertTrue(productsPage.isTitleIsDisplayed());
-        assertEquals(productsPage.checkTitleName(), ("Products"));
+        assertEquals(productsPage.checkTitleName(), (PRODUCTS.getDisplayName()));
         for (String goods : goodsList) {
             productsPage.addGoodsToCart(goods);
         }
