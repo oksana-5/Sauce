@@ -18,8 +18,9 @@ public class ProductsTest extends BaseTest {
     @Test(description = "Тест проверяет добавление товаров в корзину")
     public void checkGoodsAdded() {
         System.out.println("ProductsTest.correct in thread: " + Thread.currentThread().getId());
-        loginPage.open();
-        loginPage.login(withAdminPermission());
+        loginPage
+                .open()
+                .login(withAdminPermission());
         assertTrue(productsPage.isTitleIsDisplayed());
         assertEquals(productsPage.checkTitleName(), (PRODUCTS.getDisplayName()));
         for (String goods : goodsList) {
