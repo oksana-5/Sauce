@@ -13,12 +13,14 @@ public class CartTest extends BaseTest {
     @Test(description = "Тест проверяет наличие товаров в корзине")
     public void cartTest() {
         System.out.println("CartTest.correct in thread: " + Thread.currentThread().getId());
-        loginPage.open();
-        loginPage.login(withAdminPermission());
+        loginPage
+                .open()
+                .login(withAdminPermission());
         assertEquals(productsPage.checkTitleName(), (PRODUCTS.getDisplayName()));
 
-        productsPage.addGoodsToCart(goodsName);
-        productsPage.switchToCart();
+        productsPage
+                .addGoodsToCart(goodsName)
+                .switchToCart();
 
         assertEquals(cartPage.checkTitleName(), CART.getDisplayName());
         assertFalse(cartPage.getProductsNames().isEmpty());
